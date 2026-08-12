@@ -2,6 +2,8 @@
 
 Sitio web institucional para Nova, agencia de marketing digital. Landing page estática (HTML/CSS/JS puro, sin dependencias ni build) con secciones de servicios, sobre nosotros, proceso, casos de éxito, testimonios y contacto.
 
+> Este repo también incluye [`enfoque/`](enfoque/), una app web personal (PWA) para trackear tiempo de foco vs. scroll, sin relación con el sitio de Nova. Ver su propio README para más detalle.
+
 ## Estructura
 
 ```

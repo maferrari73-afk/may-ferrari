@@ -1,0 +1,43 @@
+name: Deploy Enfoque to GitHub Pages
+
+on:
+  push:
+    branches:
+      - claude/mobile-app-vn49i6
+    paths:
+      - "enfoque/**"
+      - ".github/workflows/deploy-enfoque.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload enfoque/ as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: enfoque
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
